@@ -11,29 +11,24 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.lti.mypack.model.Customer;
+import com.lti.mypack.model.Account;
 import com.lti.mypack.model.Document;
-import com.lti.mypack.service.DocumentService;
+import com.lti.mypack.service.AccountService;
+
 @RestController
 @CrossOrigin(origins="http://localhost:4200")
 @RequestMapping("homeloanrest/api")
-public class DocumentController {
+public class AccountController {
 	
 	@Autowired
-	DocumentService dService;
-
-	@GetMapping("/document")
-	public  List<Document> getDocument(){
-		return dService.getdocument();
-	}
-
-	@PostMapping("/document")
+	AccountService aService;
 	
-	public boolean addDocument(@RequestBody Document document) {
-		//Customer c=new Customer();
-		//c.setCustomerid(@PathVariable("custid")int custid)
-		//c.setCustomerid(105);
-		//document.setCustomer(c);
-		return dService.addDocument(document);
+	@GetMapping("/account/{accountid}")
+	public Account showAccount(@PathVariable(value="accountid")int accountid){
+		return aService.findAccount(accountid);
+		
 	}
+	
+	
+
 }

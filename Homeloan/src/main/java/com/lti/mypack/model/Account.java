@@ -18,8 +18,8 @@ public class Account {
 	 private String accountpassword;
 	 private float accountbalance;
 	 
-	 @OneToMany(mappedBy = "account")
-	 private List<loanDetails> homeloan;
+//	 @OneToMany(mappedBy = "account")
+//	 private List<loanDetails> homeloan;
 	 
 	 
 	public int getAccountid() {

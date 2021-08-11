@@ -28,8 +28,7 @@ public class Customer {
 	private String organizationtype;
 	private String employername;
 	
-	@OneToMany(mappedBy = "customer")
-	private List<Document> documents;
+
 
 	public int getCustomerid() {
 		return customerid;

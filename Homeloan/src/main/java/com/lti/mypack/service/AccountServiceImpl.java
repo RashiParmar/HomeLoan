@@ -19,5 +19,11 @@ public class AccountServiceImpl implements AccountService{
 		
 		return accRepo.findById(accountid).get();
 	}
+	
+	@Override
+	public Account findAccount1(String applicationid) {
+		// TODO Auto-generated method stub
+		return accRepo.findByApplicationid(applicationid);
+	}
 
 }
