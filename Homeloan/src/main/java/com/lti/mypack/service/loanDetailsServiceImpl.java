@@ -30,14 +30,6 @@ public class loanDetailsServiceImpl implements loanDetailsService {
 	}
 
 	@Override
-	public boolean updateloanDetails(loanDetails loandetails) {
-		loanDetails newld=ldrepo.findById(loandetails.getLoanid()).get();
-		newld=loandetails;
-		ldrepo.save(newld);
-		return true;
-	}
-
-	@Override
 	public loanDetails findloanDetails(String loanid) {
 		
 		return ldrepo.findById(loanid).get();

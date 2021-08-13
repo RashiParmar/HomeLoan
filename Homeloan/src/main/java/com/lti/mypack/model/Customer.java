@@ -5,14 +5,22 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
 
 @Entity(name = "customer")
 @Table(name = "customer")
 public class Customer {
 	@Id
+	@GenericGenerator(name = "sequence", strategy = "sequence", parameters = {
+			@org.hibernate.annotations.Parameter(name = "sequenceName", value = "sequence"),
+			@org.hibernate.annotations.Parameter(name = "allocationSize", value = "1"), })
+	@GeneratedValue(generator = "sequence", strategy = GenerationType.SEQUENCE)
 	private int customerid;
 	private String firstname;
 	private String lastname;
@@ -27,16 +35,7 @@ public class Customer {
 	private int retirementage;
 	private String organizationtype;
 	private String employername;
-	
-
-
-	public int getCustomerid() {
-		return customerid;
-	}
-
-	public void setCustomerid(int customerid) {
-		this.customerid = customerid;
-	}
+	private String password;
 
 	public String getFirstname() {
 		return firstname;
@@ -141,10 +140,21 @@ public class Customer {
 	public void setEmployername(String employername) {
 		this.employername = employername;
 	}
+	
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	
 
 	public Customer(int customerid, String firstname, String lastname, String nationality, String gender,
 			String address, String phonenumber, String dateofbirth, String emailid, float annualincome,
-			String typeofemployement, int retirementage, String organizationtype, String employername) {
+			String typeofemployement, int retirementage, String organizationtype, String employername,
+			String password) {
 		super();
 		this.customerid = customerid;
 		this.firstname = firstname;
@@ -160,6 +170,7 @@ public class Customer {
 		this.retirementage = retirementage;
 		this.organizationtype = organizationtype;
 		this.employername = employername;
+		this.password = password;
 	}
 
 	public Customer() {

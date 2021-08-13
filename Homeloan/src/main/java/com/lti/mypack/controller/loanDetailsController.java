@@ -38,9 +38,6 @@ public class loanDetailsController {
 	{
 		return ldService.findloanDetails(loanid);
 	}
-	@PutMapping("/loandetails")
-	public boolean updateloanDetails(@RequestBody loanDetails loandetails)
-	{
-		return ldService.updateloanDetails(loandetails);
-	}
+	
+	
 }

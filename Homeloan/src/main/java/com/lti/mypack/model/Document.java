@@ -1,27 +1,23 @@
 package com.lti.mypack.model;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name="documents")
 public class Document {
 	@Id
-	private int docid;
-	public int getDocid() {
-		return docid;
-	}
-	public void setDocid(int docid) {
-		this.docid = docid;
-	}
-	
-	
+	@GenericGenerator(name = "sequence", strategy = "sequence", parameters = {
+            @org.hibernate.annotations.Parameter(name = "sequenceName", value = "sequence"),
+            @org.hibernate.annotations.Parameter(name = "allocationSize", value = "1"),
+    })
+    @GeneratedValue(generator = "sequence", strategy=GenerationType.SEQUENCE)
+	private int docid;	
 	private int custid;
 	private String pancardnum;
 	private String aadharcardnum;

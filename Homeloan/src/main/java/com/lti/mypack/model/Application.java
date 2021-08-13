@@ -1,26 +1,30 @@
 package com.lti.mypack.model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name="application")
 public class Application {
 
 	@Id
-	private String applicationid;
+	@GenericGenerator(name = "sequence", strategy = "sequence", parameters = {
+            @org.hibernate.annotations.Parameter(name = "sequenceName", value = "sequence"),
+            @org.hibernate.annotations.Parameter(name = "allocationSize", value = "1"),
+    })
+    @GeneratedValue(generator = "sequence", strategy=GenerationType.SEQUENCE)
+	private int applicationid;
 	private int custid;
 	private String propertyname;
 	private String propertylocation;
 	private float estimatedamount;
 	private String loanstatus;
-	public String getApplicationid() {
-		return applicationid;
-	}
-	public void setApplicationid(String applicationid) {
-		this.applicationid = applicationid;
-	}
+	
 	public int getCustid() {
 		return custid;
 	}
@@ -51,7 +55,7 @@ public class Application {
 	public void setLoanstatus(String loanstatus) {
 		this.loanstatus = loanstatus;
 	}
-	public Application(String applicationid, int custid, String propertyname, String propertylocation,
+	public Application(int applicationid, int custid, String propertyname, String propertylocation,
 			float estimatedamount, String loanstatus) {
 		super();
 		this.applicationid = applicationid;

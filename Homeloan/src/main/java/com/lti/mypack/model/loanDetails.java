@@ -2,19 +2,24 @@ package com.lti.mypack.model;
 
 import java.sql.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name = "homeloan")
 public class loanDetails {
 	@Id
-	private String loanid;
+	@GenericGenerator(name = "sequence", strategy = "sequence", parameters = {
+            @org.hibernate.annotations.Parameter(name = "sequenceName", value = "sequence"),
+            @org.hibernate.annotations.Parameter(name = "allocationSize", value = "1"),
+    })
+    @GeneratedValue(generator = "sequence", strategy=GenerationType.SEQUENCE)
+	private int loanid;
 	private float loanamt;
 	private float maxloanamt;
 	private float interestrate;
@@ -25,14 +30,6 @@ public class loanDetails {
 //	@OneToOne(cascade = CascadeType.ALL)
 //	@JoinColumn(name = "AccLoan")
 //	private Account account;
-
-	public String getLoanid() {
-		return loanid;
-	}
-
-	public void setLoanid(String loanid) {
-		this.loanid = loanid;
-	}
 
 	public float getLoanamt() {
 		return loanamt;
@@ -82,7 +79,7 @@ public class loanDetails {
 		this.enddate = enddate;
 	}
 
-	public loanDetails(String loanid, float loanamt, float maxloanamt, float interestrate, float pendingamt,
+	public loanDetails(int loanid, float loanamt, float maxloanamt, float interestrate, float pendingamt,
 			Date startdate, Date enddate) {
 		super();
 		this.loanid = loanid;
@@ -93,6 +90,14 @@ public class loanDetails {
 		this.startdate = startdate;
 		this.enddate = enddate;
 	}
+
+	public int getLoanid() {
+		return loanid;
+	}
+
+//	public void setLoanid(int loanid) {
+//		this.loanid = loanid;
+//	}
 
 	public loanDetails() {
 		super();

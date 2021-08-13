@@ -11,7 +11,7 @@ public interface loanDetailsService {
 	
 	public boolean addloanDetails(loanDetails loandetails);
 	
-	public boolean updateloanDetails(loanDetails loandetails);
+
 	
 	public loanDetails findloanDetails(String loanid);
 

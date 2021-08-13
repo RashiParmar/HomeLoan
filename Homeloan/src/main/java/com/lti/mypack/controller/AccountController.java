@@ -29,6 +29,9 @@ public class AccountController {
 		
 	}
 	
-	
+	@PostMapping("/account")
+	public boolean addAccount(@RequestBody Account account) {
+		return aService.addAccount(account);
+	}
 
 }

@@ -1,33 +1,32 @@
 package com.lti.mypack.model;
 
-import java.util.List;
-
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name="account")
 public class Account {
 	@Id
+	@GenericGenerator(name = "sequence", strategy = "sequence", parameters = {
+            @org.hibernate.annotations.Parameter(name = "sequenceName", value = "sequence"),
+            @org.hibernate.annotations.Parameter(name = "allocationSize", value = "1"),
+    })
+    @GeneratedValue(generator = "sequence", strategy=GenerationType.SEQUENCE)
 	 private int accountid;
 	 private String applicationid;
 	 private String ifsccode;
 	 private String loanid;
-	 private String accountpassword;
 	 private float accountbalance;
 	 
 //	 @OneToMany(mappedBy = "account")
 //	 private List<loanDetails> homeloan;
 	 
 	 
-	public int getAccountid() {
-		return accountid;
-	}
-	public void setAccountid(int accountid) {
-		this.accountid = accountid;
-	}
 	public String getApplicationid() {
 		return applicationid;
 	}
@@ -46,26 +45,21 @@ public class Account {
 	public void setLoanid(String loanid) {
 		this.loanid = loanid;
 	}
-	public String getAccountpassword() {
-		return accountpassword;
-	}
-	public void setAccountpassword(String accountpassword) {
-		this.accountpassword = accountpassword;
-	}
+	
 	public float getAccountbalance() {
 		return accountbalance;
 	}
 	public void setAccountbalance(float accountbalance) {
 		this.accountbalance = accountbalance;
 	}
-	public Account(int accountid, String applicationid, String ifsccode, String loanid, String accountpassword,
+	public Account(int accountid, String applicationid, String ifsccode, String loanid, 
 			float accountbalance) {
 		super();
 		this.accountid = accountid;
 		this.applicationid = applicationid;
 		this.ifsccode = ifsccode;
 		this.loanid = loanid;
-		this.accountpassword = accountpassword;
+	
 		this.accountbalance = accountbalance;
 	}
 	public Account() {

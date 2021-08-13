@@ -26,4 +26,16 @@ public class AccountServiceImpl implements AccountService{
 		return accRepo.findByApplicationid(applicationid);
 	}
 
+	@Override
+	public boolean addAccount(Account account) {
+		accRepo.save(account);
+		return false;
+	}
+
+	
+
+	
+
+	
+
 }
